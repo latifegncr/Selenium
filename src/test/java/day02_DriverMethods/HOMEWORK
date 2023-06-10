@@ -1,0 +1,68 @@
+
+Homework1
+Yeni bir Class olusturalim.C05_NavigationMethods
+Youtube ana sayfasina gidelim . https://www.youtube.com/
+Amazon soyfasina gidelim. https://www.amazon.com/
+Tekrar YouTube’sayfasina donelim
+Yeniden Amazon sayfasina gidelim
+Sayfayi Refresh(yenile) yapalim
+Sayfayi kapatalim / Tum sayfalari kapatalim
+
+Homework2
+Yeni bir package olusturalim : day01
+Yeni bir class olusturalim : C03_GetMethods
+Amazon sayfasina gidelim. https://www.amazon.com/
+Sayfa basligini(title) yazdirin
+Sayfa basliginin “Amazon” icerdigini test edin
+Sayfa adresini(url) yazdirin
+Sayfa url’inin “amazon” icerdigini test edin.
+Sayfa handle degerini yazdirin
+Sayfa HTML kodlarinda “Gateway” kelimesi gectigini test edin
+Sayfayi kapatin.
+
+Homework3
+1.Yeni bir Class olusturalim.C06_ManageWindow
+2.Amazon soyfasina gidelim. https://www.amazon.com/
+3.Sayfanin konumunu ve boyutlarini yazdirin
+4.Sayfayi simge durumuna getirin
+5.simge durumunda 3 saniye bekleyip sayfayi maximize yapin
+6.Sayfanin konumunu ve boyutlarini maximize durumunda yazdirin
+7.Sayfayi fullscreen yapin
+8.Sayfanin konumunu ve boyutlarini fullscreen durumunda yazdirin
+9.Sayfayi kapatin
+
+Homework4
+Yeni bir class olusturun (TekrarTesti)
+Youtube web sayfasına gidin ve sayfa başlığının “youtube” olup olmadığını doğrulayın  (verify), eğer değilse doğru başlığı(Actual Title) konsolda yazdirin.
+Sayfa URL'sinin “youtube” içerip içermediğini (contains) doğrulayın, içermiyorsa doğru  URL'yi yazdırın.
+Daha sonra Amazon sayfasina gidin https://www.amazon.com/
+Youtube sayfasina geri donun
+Sayfayi yenileyin
+Amazon sayfasina donun
+Sayfayi tamsayfa yapin
+Ardından sayfa başlığının "Amazon" içerip içermediğini (contains) doğrulayın, Yoksa  doğru başlığı(Actual Title) yazdırın.
+Sayfa URL'sinin https://www.amazon.com/ olup olmadığını doğrulayın, degilse doğru
+URL'yi yazdırın
+Sayfayi kapatin
+
+//////////**************\\\\\\\\\\\\\\\\\\\\\\\
+//Amazon sayfasına gidiniz
+        driver.get("https://amazon.com");
+//iphone aratınız
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iphone", Keys.ENTER);
+//çıkan sonuç yazısını konsola yazdırınız
+        WebElement sonucYazisi = driver.findElement(By.xpath("//h1//*[@class='a-section a-spacing-small a-spacing-top-small']"));
+        System.out.println(sonucYazisi.getText());
+        String [] sonucSayisi = sonucYazisi.getText().split(" ");
+        System.out.println("Sonuc Sayisi = "+sonucSayisi[2]);
+//çıkan ürünlerden ilk 5 tanesine tıklayıp sayfa başlıklarını yazdırınız
+        for (int i = 0; i < 5 ; i++) {
+            List<WebElement> urunler = driver.findElements(By.xpath("//*[@class='a-section aok-relative s-image-fixed-height']"));
+            Thread.sleep(2000);
+            urunler.get(i).click();
+            Thread.sleep(2000);
+            System.out.println((i+1)+". Urun basligi : "+driver.getTitle());
+            driver.navigate().back();
+            Thread.sleep(2000);
+        }
+        driver.close();
